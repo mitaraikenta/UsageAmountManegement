@@ -1,4 +1,5 @@
 <resources>
+    <string name="appname">デッキ勝率管理</string>
     <string name="winpa">勝率</string>
     <string name="enemydeck">相手のデッキ</string>
     <string name="deckname">デッキ名</string>
