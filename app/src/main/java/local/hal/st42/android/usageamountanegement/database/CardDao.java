@@ -18,7 +18,7 @@ public interface CardDao {
     LiveData<List<Card>> findAll();
 
     @Query("UPDATE card SET _win = :win WHERE _id = :id")
-    ListenableFuture<Integer> ChangeChecked(long done, long id);
+    ListenableFuture<Integer> updatewin(long id, long win);
 
     @Insert
     ListenableFuture<Long> insert(Card card);

@@ -9,6 +9,7 @@ import androidx.room.TypeConverters;
 
 @Database(entities = {Card.class}, version = 1, exportSchema = false)
 public class AppDatabase extends RoomDatabase {
+
     private static AppDatabase _instance;
 
     public static AppDatabase getDatabase(Context context) {
@@ -18,5 +19,5 @@ public class AppDatabase extends RoomDatabase {
         return _instance;
     }
 
-    public abstract CardDAO createCardDAO();
+    public abstract CardDao createCardDAO();
 }
