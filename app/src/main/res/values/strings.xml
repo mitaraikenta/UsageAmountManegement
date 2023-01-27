@@ -1,16 +1,8 @@
 <resources>
-    <sring name="">勝率</sring>
-    <string name="">相手のデッキ</string>
-    <sring name="">デッキ名</sring>
-    <sring name="">勝利</sring>
-    <sring name="">敗北</sring>
-<sring name="">感想</sring>
-    <sring name="">
-
-    </sring>
-
-
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="winpa">勝率</string>
+    <string name="enemydeck">相手のデッキ</string>
+    <string name="deckname">デッキ名</string>
+    <string name="win">勝利</string>
+    <string name="lose">敗北</string>
+    <string name="think">感想</string>
 </resources>
