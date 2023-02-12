@@ -1,5 +1,6 @@
 package local.hal.st42.android.usageamountanegement;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -7,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
@@ -28,10 +30,13 @@ import local.hal.st42.android.usageamountanegement.viewmodel.MainViewModel;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         ViewModelProvider provider = new ViewModelProvider(MainActivity.this);
         _mainviewmodel = provider.get(MainViewModel.class);
-        _cardlist = new CardListObserver();
         _cardlist = new MutableLiveData<>();
         createRecyclerView();
 
@@ -80,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private class CardListObserver implements Observer<List<Card>> {
         @Override
         public void onChanged(List<Card> cardList) {
-            CardListAdapter _adapter = (TodoListAdapter) _list.getAdapter();
-            _adapter.changeTodoList(cardList);
+            CardListAdapter _adapter = (CardListAdapter) _list.getAdapter();
         }
     }
 
@@ -93,9 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         public CardViewHolder(View itemView) {
             super(itemView);
-            _tvTaskNameRow = itemView.findViewById(R.id.tvTaskNameRow);
-            _tvTaskDeadlineRow = itemView.findViewById(R.id.tvTaskDeadlineRow);
-            _cbTaskCheckRow = itemView.findViewById(R.id.cbTaskCheckRow);
+            _tvTaskNameRow = itemView.findViewById(R.id.deckname);
         }
     }
 
@@ -108,6 +109,25 @@ public class MainActivity extends AppCompatActivity {
             _listdata = listData;
         }
 
+        @Override
+        public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+            View row = inflater.inflate(R.layout.row, parent, false);
 
+            CardViewHolder holder = new CardViewHolder(row);
+            return holder;
+        }
+
+        //データベース内のテキスト達を保存している場所
+        @Override
+        public void onBindViewHolder(CardViewHolder holder, int position) {
+            Card card = _listdata.get(position);
+            holder._tvTaskNameRow.setText(card.DeckName);
+        }
+
+        @Override
+        public int getItemCount() {
+            return _listdata.size();
+        }
     }
 }

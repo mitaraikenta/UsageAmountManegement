@@ -20,6 +20,9 @@ public interface CardDao {
     @Query("UPDATE card SET _win = :win WHERE _id = :id")
     ListenableFuture<Integer> updatewin(long id, long win);
 
+    @Query("SELECT * FROM card WHERE _id = :id")
+    ListenableFuture<Card> findByPK(long id);
+
     @Insert
     ListenableFuture<Long> insert(Card card);
 
